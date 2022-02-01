@@ -34,24 +34,28 @@ namespace GSB
 
         public void getInfosVisiteur(string login, string mdp)
         {
+
             connectionMysQl();
             string maRequete = @"SELECT visiteur.id AS id, visiteur.nom AS nom, visiteur.prenom AS prenom FROM visiteur  WHERE visiteur.login = @unLogin AND visiteur.mdp = @unMdp";
             MySqlCommand comm = new MySqlCommand(maRequete, connectdb);
-            comm.Parameters.Add("@unLogin", login);
+            comm.Parameters.AddWithValue(@"unLogin", login);
+            comm.Parameters.AddWithValue(@"unMdp", mdp);
             var unReader = comm.ExecuteReader();
-            while (unReader.Read()) {
+            while (unReader.Read())
+            {
                 string id = unReader.GetString(0);
                 string nom = unReader.GetString(1);
                 string prenom = unReader.GetString(2);
-                Console.WriteLine(id," ",nom," ", prenom);
+                Console.WriteLine(id, " ", nom, " ", prenom);
             }
         }
 
-        public void getEtatById(int id)
+        public void getEtatById(string id)
         {
+            connectionMysQl();
             string maRequete = @"SELECT * FROM etat WHERE etat.id = @id";
             MySqlCommand comm = new MySqlCommand(maRequete, connectdb);
-            comm.Parameters.Add("@id", (MySqlDbType) id);
+            comm.Parameters.AddWithValue("@id", id);
             var unReader = comm.ExecuteScalar();
             Console.WriteLine(unReader);
             

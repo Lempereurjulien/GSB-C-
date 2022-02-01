@@ -16,7 +16,7 @@ namespace GSB
         {
             AccesDonnees connexion = new AccesDonnees();
             //connexion.connectionMysQl();
-            connexion.selectC();
+            
             //connexion.selectV();
             DateTime aDateTime = new DateTime(2005, 8, 20, 12, 1, 10);
             //Console.WriteLine(GestionsDates.GetMoisPrecedent(aDateTime));
@@ -27,7 +27,8 @@ namespace GSB
             //Console.WriteLine(GestionsDates.entre(14,20,2));
             //var a= GestionsDates.GetMoisPrecedent();
             //Console.WriteLine(a);
-            connexion.getTableauEtat();
+            
+            connexion.getInfosVisiteur("dandre","opgg5");
             Console.ReadLine();
           }
     }
